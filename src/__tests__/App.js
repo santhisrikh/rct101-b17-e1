@@ -32,7 +32,7 @@ describe("Testing routing Application", () => {
     console.log("Resetting Score to 0");
   });
   describe("",()=>{
-    let global.score = 1;
+    global.score = 1;
 
     test("the application has the required elements", () => {
       const { getByTestId } = render(<App />);
