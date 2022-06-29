@@ -25,81 +25,93 @@ const data = [
     description: "Learn how to manage state"
   }
 ];
-describe("",()=>{
-  let acc_score = 1;
-  test("the application has the required elements", () => {
-    const { getByTestId } = render(<App />);
-    let app_header = getByTestId("header");
-    let slide = getByTestId("slide");
-    let title = getByTestId("title");
-    let description = getByTestId("description");
-    let prev = getByTestId("prev");
-    let next = getByTestId("next");
-  
-    expect(app_header.textContent).toBe("Slides");
-    expect(slide).toBeDefined();
-    expect(title).toBeDefined();
-    expect(description).toBeDefined();
-    expect(prev).toBeDefined();
-    expect(prev.textContent).toBe("Prev");
-    expect(next).toBeDefined();
-    expect(next.textContent).toBe("Next");
-    acc_score += 2
-  });
-  
-  test("prev button to be disabled", () => {
-    const { getByTestId } = render(<App />);
-    let prev = getByTestId("prev");
-  
-    expect(prev).toHaveAttribute("disabled");
-    expect(prev).toBeDisabled();
-    acc_score += 1
 
+describe("Testing routing Application", () => {
+  beforeAll(() => {
+    global.score = 0;
+    console.log("Resetting Score to 0");
   });
-  
-  test("slides to have correct information when moving from page to page", async () => {
-    const { getByTestId } = render(<App />);
-    let prev = getByTestId("prev");
-    let next = getByTestId("next");
-    let title = getByTestId("title");
-    let description = getByTestId("description");
-  
-    expect(title.textContent).toBe(data[0].title);
-    expect(description.textContent).toBe(data[0].description);
-  
-    fireEvent.click(next);
-    expect(title.textContent).toBe(data[1].title);
-    expect(description.textContent).toBe(data[1].description);
-    acc_score += 1
-  
-    fireEvent.click(next);
-    expect(title.textContent).toBe(data[2].title);
-    expect(description.textContent).toBe(data[2].description);
-    expect(next).toHaveAttribute("disabled");
-    expect(next).toBeDisabled();
-  
-    fireEvent.click(prev);
-    expect(title.textContent).toBe(data[1].title);
-    expect(description.textContent).toBe(data[1].description);
-  
-    fireEvent.click(prev);
-    expect(title.textContent).toBe(data[0].title);
-    expect(description.textContent).toBe(data[0].description);
-    expect(prev).toHaveAttribute("disabled");
-    expect(prev).toBeDisabled();
-    acc_score += 2
+  describe("",()=>{
+    let global.score = 1;
 
-  });
-  
-  test("Slides unit testing", () => {
-    const { getByTestId } = render(<Slide title="Hello" description="World" />);
-    let title = getByTestId("title");
-    let description = getByTestId("description");
-    expect(title.textContent).toBe("Hello");
-    expect(description.textContent).toBe("World");
-    acc_score += 2
+    test("the application has the required elements", () => {
+      const { getByTestId } = render(<App />);
+      let app_header = getByTestId("header");
+      let slide = getByTestId("slide");
+      let title = getByTestId("title");
+      let description = getByTestId("description");
+      let prev = getByTestId("prev");
+      let next = getByTestId("next");
+    
+      expect(app_header.textContent).toBe("Slides");
+      expect(slide).toBeDefined();
+      expect(title).toBeDefined();
+      expect(description).toBeDefined();
+      expect(prev).toBeDefined();
+      expect(prev.textContent).toBe("Prev");
+      expect(next).toBeDefined();
+      expect(next.textContent).toBe("Next");
+     global.score += 2
+    });
+    
+    test("prev button to be disabled", () => {
+      const { getByTestId } = render(<App />);
+      let prev = getByTestId("prev");
+    
+      expect(prev).toHaveAttribute("disabled");
+      expect(prev).toBeDisabled();
+     global.score += 1
 
-  });
+    });
+    
+    test("slides to have correct information when moving from page to page", async () => {
+      const { getByTestId } = render(<App />);
+      let prev = getByTestId("prev");
+      let next = getByTestId("next");
+      let title = getByTestId("title");
+      let description = getByTestId("description");
+    
+      expect(title.textContent).toBe(data[0].title);
+      expect(description.textContent).toBe(data[0].description);
+    
+      fireEvent.click(next);
+      expect(title.textContent).toBe(data[1].title);
+      expect(description.textContent).toBe(data[1].description);
+     global.score += 1
+    
+      fireEvent.click(next);
+      expect(title.textContent).toBe(data[2].title);
+      expect(description.textContent).toBe(data[2].description);
+      expect(next).toHaveAttribute("disabled");
+      expect(next).toBeDisabled();
+    
+      fireEvent.click(prev);
+      expect(title.textContent).toBe(data[1].title);
+      expect(description.textContent).toBe(data[1].description);
+    
+      fireEvent.click(prev);
+      expect(title.textContent).toBe(data[0].title);
+      expect(description.textContent).toBe(data[0].description);
+      expect(prev).toHaveAttribute("disabled");
+      expect(prev).toBeDisabled();
+     global.score += 2
+
+    });
+    
+    test("Slides unit testing", () => {
+      const { getByTestId } = render(<Slide title="Hello" description="World" />);
+      let title = getByTestId("title");
+      let description = getByTestId("description");
+      expect(title.textContent).toBe("Hello");
+      expect(description.textContent).toBe("World");
+     global.score += 2
+
+    });
+    
+  })
   
-})
+  afterAll(() => {
+    console.log("Final Score is", global.score);
+  });
+});
 
