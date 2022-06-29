@@ -48,9 +48,9 @@ describe("Testing routing Application", () => {
       expect(title).toBeDefined();
       expect(description).toBeDefined();
       expect(prev).toBeDefined();
-      expect(prev.textContent).toBe("Prev");
+      expect(prev.textContent).toBe("prev");
       expect(next).toBeDefined();
-      expect(next.textContent).toBe("Next");
+      expect(next.textContent).toBe("next");
      global.score += 2
     });
     
