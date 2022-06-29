@@ -108,7 +108,7 @@ describe("Testing routing Application", () => {
 
     });
     
-  })
+  });
   
   afterAll(() => {
     console.log("Final Score is", global.score);
